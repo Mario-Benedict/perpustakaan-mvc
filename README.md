@@ -12,5 +12,5 @@ npm install
 Running tailwindcss for development
 
 ```bash
-npx tailwindcss -i ./src/public/css/style.css -o ./src/dist/css/style.css --watch
+npx tailwindcss -i ./src/public/css/style.css -o ./src/public/dist/css/style.css --watch
 ```
