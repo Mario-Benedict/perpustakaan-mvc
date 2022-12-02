@@ -22,9 +22,11 @@ class UserModel {
 
     public function login($data) {
         $query = "SELECT * FROM " . $this->table . " WHERE email = :email OR username = :username";
-        $this->query($query);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('username', $data['username']);
+        $this->db->query($query);
+        $this->db->bind('email', $data);
+        $this->db->bind('username', $data);
+
+        $this->db->execute();
 
         return $this->db->single();
     }

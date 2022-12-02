@@ -2,7 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{html,js,php}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "danger": "#e3342f",
+        "warning": "#dd6b20",
+        "success": "#38c172",
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms')({
