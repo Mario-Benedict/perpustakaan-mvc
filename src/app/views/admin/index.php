@@ -33,10 +33,9 @@
     
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($data as $book): ?>
-                        <!-- TODO: pagination -->
+                    <?php foreach ($data[0] as $book): ?>
                         <tr>
-                        <td class="border px-4 py-1 text-center"><?= $i ?></td>
+                            <td class="border px-4 py-1 text-center"><?= $i ?></td>
                             <td class="border px-4 py-1 text-center font-bold">
                                 <?= $book['title'] ?>
                             </td>
@@ -78,21 +77,36 @@
             </table>
 
             <div class="flex justify-center gap-2">
-                <button class="text-slate-700 border-none hover:opacity-80 rounded-lg font-bold px-4 py-1 transition-all duration-300">
-                    <
-                </button>
-                <button class="bg-slate-700 border-none shadow-lg hover:opacity-80 rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
-                    1
-                </button>
-                <button class="bg-slate-700 border-none shadow-lg hover:opacity-80 rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
-                    2
-                </button>
-                <button class="bg-slate-700 border-none shadow-lg hover:opacity-80 rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
-                    3
-                </button>
-                <button class="text-slate-700 border-none hover:opacity-80 rounded-lg font-bold px-4 py-1 transition-all duration-300">
-                    >
-                </button>
+                <?php $j = 1; ?>
+                <?php if ($_GET['page'] > 1) : ?>
+                    <button class="text-slate-700 border-none hover:opacity-80 rounded-lg font-bold px-4 py-1 transition-all duration-300">
+                        <a href="admin?page=<?= $_GET['page'] - 1 ?>">
+                            <
+                        </a>
+                    </button>
+                <?php endif; ?>
+                
+                <?php for($j; $j <= $data[1]; $j++): ?>
+                    <?php if ($j == $_GET['page'] || (!isset($_GET['page']) && $j == 1)): ?>
+                        <button class="bg-black border-none text-white shadow-lg rounded-lg font-bold px-4 py-1 transition-all">
+                            <?= $j ?>
+                        </button>
+                    <?php else: ?>
+                        <button class="bg-slate-700 border-none shadow-lg hover:opacity-80 rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
+                            <a href="admin?page=<?= $j ?>">
+                                <?= $j ?>
+                            </a>
+                        </button>
+                    <?php endif; ?>
+                <?php endfor; ?>
+                
+                <?php if ($_GET['page'] < $data[1]) : ?>
+                    <button class="text-slate-700 border-none hover:opacity-80 rounded-lg font-bold px-4 py-1 transition-all duration-300">
+                        <a href="admin?page=<?= $_GET['page'] + 1 ?>">
+                            >
+                        </a>
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>
