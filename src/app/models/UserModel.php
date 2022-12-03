@@ -9,11 +9,12 @@ class UserModel {
     }
 
     public function register($data) {
-        $query = "INSERT INTO " . $this->table . " (username, email, password) VALUES (:username, :email, :password)";
+        $query = "INSERT INTO " . $this->table . " (username, email, password, role) VALUES (:username, :email, :password, :role)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('password', $data['password']);
+        $this->db->bind('role', 'user');
 
         $this->db->execute();
 
