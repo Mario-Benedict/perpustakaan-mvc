@@ -77,7 +77,7 @@
                     </tbody>
                 </table>
 
-                <div class="flex justify-center gap-2">
+                <div class="flex justify-center gap-2 mt-5">
                     <button class="text-slate-700 border-none hover:opacity-80 rounded-lg font-bold px-4 py-1 transition-all duration-300">
                         <
                     </button>

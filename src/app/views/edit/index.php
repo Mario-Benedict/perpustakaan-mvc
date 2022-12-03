@@ -82,7 +82,7 @@
                 <div class="flex flex-col gap-3">
                     <label for="confirm_password" class="text-gray-700 font-bold">Release</label>
                     <input
-                        type="text"
+                        type="date"
                         name="release"
                         id="release"
                         class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-2
