@@ -30,4 +30,25 @@ class UserModel {
 
         return $this->db->single();
     }
+
+    public function setToken($token, $id) {
+        $query = "UPDATE " . $this->table . " SET token = :token WHERE id = :id";
+        $this->db->query($query);
+        $this->db->bind('token', $token);
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
+    public function deleteToken($token) {
+        $query = "UPDATE " . $this->table . " SET token = '' WHERE token = :token";
+        $this->db->query($query);
+        $this->db->bind('token', $token);
+
+        $this->db->execute();
+
+        return $this->db->single();
+    }
 }

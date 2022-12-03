@@ -27,6 +27,8 @@ class Login extends Controller {
             $token = base64_encode(openssl_random_pseudo_bytes(64));
             setcookie('token', $token, time() + 60 * 60 * 24 * 7, '/', '', true, true);
 
+            $this->model('UserModel')->setToken($token, $user['id']);
+
             header('Location: ' . BASE_URL . '');
             exit;
         } else {
@@ -39,6 +41,9 @@ class Login extends Controller {
 
     public function logout() {
         if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $this->model('UserModel')->deleteToken($token);
+            
             setcookie('token', '', time() - 3600, '/', '', true, true);
         }
         header('Location: ' . BASE_URL . 'login');
