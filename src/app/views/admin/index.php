@@ -14,7 +14,7 @@
 </head>
 <body>
     <header class="sticky top-0 backdrop-blur bg-slate-200 p-5 shadow-2xl flex justify-between">
-    <a href="<?= BASE_URL ?>home">
+        <a href="<?= BASE_URL ?>home">
             <h1 class="text-2xl font-bold text-gray-700 hover:opacity-80 transition-all duration-300">Library</h1>
         </a>
 
@@ -30,7 +30,7 @@
 
     <div class="w-full min-h-screen bg-slate-200 p-5 grid place-items-center">
 
-        <div class="bg-white shadow-2xl p-8 rounded-lg flex flex-col gap-5">
+        <div class="bg-white shadow-2xl p-8 rounded-lg">
             <h1 class="text-3xl font-bold text-gray-700 text-center">Library</h1>
 
             <div class="flex flex-col gap-2">
@@ -47,7 +47,7 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-            
+        
                 <table>
                     <thead>
                         <tr>
@@ -57,6 +57,7 @@
                             <td class="border px-4 py-1 text-center">Author</td>
                             <td class="border px-4 py-1 text-center">Release Date</td>
                             <td class="border px-4 py-1 text-center">Action</td>
+                            <td class="border px-4 py-1 text-center">Admin Actions</td>
                         </tr>
                     </thead>
         
@@ -73,6 +74,21 @@
                                         Read Book
                                     </button>
                                 </a>
+                            <td class="border px-4 py-1 text-center">
+                                <div class="flex gap-4">
+                                    <a href="<?= BASE_URL ?>book/edit/1" style="text-decoration: none; color: black;">
+                                        <button class="bg-slate-700 border-none shadow-lg hover:shadow-xl rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
+                                            Edit
+                                        </button>
+                                    </a>
+
+                                    <a href="<?= BASE_URL ?>book/delete/1" style="text-decoration: none; color: black;">
+                                        <button class="bg-red-700 border-none shadow-lg hover:shadow-xl rounded-lg text-white font-bold px-4 py-1 transition-all duration-300">
+                                            Delete
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

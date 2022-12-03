@@ -1,11 +1,11 @@
 <?php
 
-class Home extends Controller {
+class Admin extends Controller {
     public function index() {
         session_start();
 
         if (!isset($_SESSION['perpustakaan_login'])) {
-            $this->view('home/index');
+            $this->view('admin/index');
         } else {
             header('Location: '. BASE_URL . 'login');
         }
