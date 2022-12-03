@@ -1,13 +1,8 @@
 <?php
 
-class Admin extends Controller {
+class Delete extends Controller {
     public function index() {
-        session_start();
-
         if ($_COOKIE['token']) {
-            $token = $_COOKIE['token'];
-
-            $data['title'] = 'Admin Panel';
             $data['user'] = $this->model('UserModel')->getUserByToken($token);
 
             $user = [
@@ -17,16 +12,16 @@ class Admin extends Controller {
             ];
 
             if ($user['role'] != 'admin') header('Location: '. BASE_URL);
+            
+            $id = $_GET['id'];
 
-            $page = $_GET['page'] ?? 1;
-            $book = $this->model('BookModel')->getAllBooks($page);
+            $this->model('BookModel')->deleteBook($id);
 
-            $this->view('components/header', $data);
-            $this->view('components/navbar', $user);
-            $this->view('admin/index', $book);
-            $this->view('components/footer');
+            Flash::setFlash('Book has been deleted', '', 'success');
+
+            header('Location: ' . BASE_URL . 'admin');
         } else {
             header('Location: '. BASE_URL . 'login');
         }
-    }
+    }   
 }

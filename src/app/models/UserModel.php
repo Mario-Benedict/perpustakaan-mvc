@@ -9,7 +9,6 @@ class UserModel {
     }
 
     public function register($data) {
-        // insert with uuid id
         $query = "INSERT INTO " . $this->table . " (id, username, email, password, role) VALUES (UUID(), :username, :email, :password, :role)";
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
@@ -46,6 +45,16 @@ class UserModel {
 
     public function deleteToken($token) {
         $query = "UPDATE " . $this->table . " SET token = '' WHERE token = :token";
+        $this->db->query($query);
+        $this->db->bind('token', $token);
+
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
+    public function getUserByToken($token) {
+        $query = "SELECT * FROM " . $this->table . " WHERE token = :token";
         $this->db->query($query);
         $this->db->bind('token', $token);
 

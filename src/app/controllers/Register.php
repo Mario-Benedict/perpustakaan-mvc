@@ -2,7 +2,11 @@
 
 class Register extends Controller {
     public function index() {
+        $data['title'] = 'Register';
+
+        $this->view('components/header', $data);
         $this->view('register/index');
+        $this->view('components/footer');
     }
 
     public function register() {
