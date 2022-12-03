@@ -6,8 +6,6 @@ class Login extends Controller {
     }
 
     public function login() {
-        session_start();
-
         $identifier = $_POST['identifier'];
         $password = $_POST['password'];
 
@@ -26,10 +24,10 @@ class Login extends Controller {
         }
 
         if (password_verify($password, $user['password'])) {
-            $_SESSION['perpustakaan_login'] = [
-                'username' => $user['username'],
-                'email' => $user['email']
-            ];
+            $token = base64_encode(openssl_random_pseudo_bytes(64));
+            setcookie('token', $token, time() + 60 * 60 * 24 * 7, '/', '', true, true);
+
+            $this->model('UserModel')->setToken($token, $user['id']);
 
             header('Location: ' . BASE_URL . '');
             exit;
@@ -42,8 +40,12 @@ class Login extends Controller {
     }
 
     public function logout() {
-        session_start();
-        session_destroy();
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $this->model('UserModel')->deleteToken($token);
+            
+            setcookie('token', '', time() - 3600, '/', '', true, true);
+        }
         header('Location: ' . BASE_URL . 'login');
         exit;
     }
