@@ -38,6 +38,7 @@
                         class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-2
                         hover:shadow-lg transition-all duration-300"
                         placeholder="Your Password"
+                        autocomplete="on"
                     >
                 </div>
 

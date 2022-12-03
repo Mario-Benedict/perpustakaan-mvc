@@ -45,10 +45,7 @@ class Register extends Controller {
 
         $this->model('UserModel')->register($data);
 
-        $_SESSION['perpustakaan_login'] = [
-            'username' => $username,
-            'email' => $email
-        ];
+        Flash::setFlash('Register Success', 'You can login now', 'success');
 
         header('Location: ' . BASE_URL . '');
         exit;
