@@ -19,6 +19,8 @@ class Admin extends Controller {
             if ($user['role'] != 'admin') header('Location: '. BASE_URL);
 
             $page = $_GET['page'] ?? 1;
+            preg+replace('/[^0-9]/', '', $page);
+
             $book = $this->model('BookModel')->getAllBooks($page);
 
             $total = count($book);

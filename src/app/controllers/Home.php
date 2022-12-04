@@ -17,6 +17,7 @@ class Home extends Controller {
             ];
 
             $page = $_GET['page'] ?? 1;
+            preg+replace('/[^0-9]/', '', $page);
             $book = $this->model('BookModel')->getAllBooks($page);
 
             $total = count($book);
